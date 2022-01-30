@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { type FormEvent, useState } from "react";
 import {
   Flex,
   Stack,
@@ -14,10 +14,7 @@ import { SmallCloseIcon } from "@chakra-ui/icons";
 import ky from "ky";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/button";
-
-interface HTMLEvent {
-  target: HTMLInputElement;
-}
+import { type HTMLEvent } from "../types/generic";
 
 const CreateView = () => {
   const [formState, setFormState] = useState({
@@ -46,13 +43,11 @@ const CreateView = () => {
   };
 
   const handleDeleteOption = (index: number) => {
-    console.log("deleting", index, formState.options[index]);
     const options = formState.options.filter((_, i) => i !== index);
-    console.log("opts", options);
     setFormState({ ...formState, options });
   };
 
-  const onFormSubmit = async (event: any) => {
+  const onFormSubmit = async (event: FormEvent) => {
     setSubmitting(true);
     event.preventDefault();
 
@@ -66,8 +61,8 @@ const CreateView = () => {
         const data: { pollId: string } = await res.json();
         navigate(`/${data.pollId}`);
       })
-      .catch(() => setSubmitting(false))
-      .finally(() => showErrorToast("Failed to create poll"));
+      .catch(() => showErrorToast("Failed to create poll"))
+      .finally(() => setSubmitting(false));
   };
 
   const showErrorToast = (message: string) => {
