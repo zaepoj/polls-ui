@@ -16,6 +16,7 @@ ReactDOM.render(
           <Route path="/:id" element={<AnswerView />} />
           <Route path="/:id/results" element={<ResultView />} />
           <Route path="/create" element={<CreateView />} />
+          <Route path="/" element={<CreateView />} />
         </Routes>
       </ChakraProvider>
     </BrowserRouter>
