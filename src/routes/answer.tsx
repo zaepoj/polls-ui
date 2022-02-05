@@ -88,19 +88,23 @@ const AnswerView = () => {
       height="100%"
     >
       <form onSubmit={handleSubmit}>
-        <Flex flexDirection="column">
-          <Heading size="xl" padding="10">
+        <Flex
+          flexDirection="column"
+          alignItems="center"
+          justifyContent="center"
+        >
+          <Heading textAlign={"center"} size="xl" padding="10">
             {poll?.title}
           </Heading>
 
-          <Stack>
+          <Stack p="2em">
             <RadioGroup
               onChange={handleSelect}
               style={{ display: "flex", flexDirection: "column" }}
             >
               {poll?.options.map((option) => {
                 return (
-                  <Radio value={option.id} size="lg">
+                  <Radio key={option.id} p="1em" value={option.id} size="lg">
                     {option.value}
                   </Radio>
                 );
@@ -108,7 +112,9 @@ const AnswerView = () => {
             </RadioGroup>
           </Stack>
           <Flex justifyContent="flex-end">
-            <Button disabled={submitting} type="submit">Create</Button>
+            <Button disabled={submitting} type="submit">
+              Submit
+            </Button>
           </Flex>
         </Flex>
       </form>
