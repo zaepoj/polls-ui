@@ -9,5 +9,4 @@ const Card = styled(Flex)`
   border-radius: 20px;
   box-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.2), 0 0 1rem rgba(0, 0, 0, 0.2);
 `;
-// test
 export default Card;

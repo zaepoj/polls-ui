@@ -10,12 +10,12 @@ import {
   useToast,
   Box,
 } from "@chakra-ui/react";
+import Card from "../components/card";
 import { SmallCloseIcon } from "@chakra-ui/icons";
 import ky from "ky";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/button";
 import { type HTMLEvent } from "../types/generic";
-import Card from "../components/Card";
 
 const CreateView = () => {
   const [formState, setFormState] = useState({

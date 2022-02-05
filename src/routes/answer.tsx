@@ -15,7 +15,7 @@ import {
 import ky from "ky";
 import { type FormEvent, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import Card from "../components/Card";
+import Card from "../components/card";
 import useFetchApi from "../hooks/fetchApi";
 import { type Poll } from "../types/poll";
 

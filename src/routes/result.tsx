@@ -13,7 +13,7 @@ import { useState, useEffect, useMemo } from "react";
 import { useParams } from "react-router-dom";
 import { type PollResult } from "../types/poll";
 import { LinkIcon } from "@chakra-ui/icons";
-import Card from "../components/Card";
+import Card from "../components/card";
 
 const ResultView = () => {
   const { id } = useParams();
