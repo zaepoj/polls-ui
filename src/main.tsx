@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CreateView from "./routes/create";
 import AnswerView from "./routes/answer";
+import ResultView from "./routes/result";
 import { ChakraProvider } from "@chakra-ui/react";
 import Theme from "./theme";
 import "./app.css";
@@ -13,6 +14,7 @@ ReactDOM.render(
       <ChakraProvider theme={Theme}>
         <Routes>
           <Route path="/:id" element={<AnswerView />} />
+          <Route path="/:id/results" element={<ResultView />} />
           <Route path="/create" element={<CreateView />} />
         </Routes>
       </ChakraProvider>
