@@ -13,6 +13,7 @@ import { useState, useEffect, useMemo } from "react";
 import { useParams } from "react-router-dom";
 import { type PollResult } from "../types/poll";
 import { LinkIcon } from "@chakra-ui/icons";
+import Card from "../components/Card";
 
 const ResultView = () => {
   const { id } = useParams();
@@ -71,12 +72,7 @@ const ResultView = () => {
       alignItems={"center"}
       height="100%"
     >
-      <Flex
-        width="100%"
-        flexDirection="column"
-        alignItems="center"
-        justifyContent="center"
-      >
+      <Card w="100%" style={{ maxWidth: "600px" }}>
         <Flex alignItems="center">
           <Heading textAlign={"center"} size="xl" padding="10">
             {pollResult?.title}
@@ -102,7 +98,7 @@ const ResultView = () => {
                   height="32px"
                   value={(opt.count / totalCounts) * 100}
                   sx={{
-                    "& > div:first-child": {
+                    "& > div:first-of-type": {
                       transitionProperty: "width",
                     },
                   }}
@@ -111,7 +107,7 @@ const ResultView = () => {
             );
           })}
         </Stack>
-      </Flex>
+      </Card>
     </Flex>
   );
 };

@@ -15,6 +15,7 @@ import ky from "ky";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/button";
 import { type HTMLEvent } from "../types/generic";
+import Card from "../components/Card";
 
 const CreateView = () => {
   const [formState, setFormState] = useState({
@@ -89,12 +90,7 @@ const CreateView = () => {
         maxWidth="600px"
         alignItems="center"
       >
-        <Flex
-          width="100%"
-          alignItems="center"
-          justifyContent="center"
-          flexDirection="column"
-        >
+        <Card w="100%">
           <Heading size="xl" padding="10">
             Create new poll
           </Heading>
@@ -150,7 +146,7 @@ const CreateView = () => {
               </Flex>
             </form>
           </Stack>
-        </Flex>
+        </Card>
       </Flex>
     </Flex>
   );

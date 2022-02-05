@@ -1,3 +1,4 @@
+import { LinkIcon } from "@chakra-ui/icons";
 import {
   Box,
   Flex,
@@ -8,10 +9,13 @@ import {
   RadioGroup,
   Radio,
   Button,
+  IconButton,
+  useClipboard,
 } from "@chakra-ui/react";
 import ky from "ky";
 import { type FormEvent, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import Card from "../components/Card";
 import useFetchApi from "../hooks/fetchApi";
 import { type Poll } from "../types/poll";
 
@@ -20,6 +24,7 @@ const AnswerView = () => {
   const [error, setError] = useState<Boolean>();
   const [pollAnswer, setPollAnswer] = useState<string>();
   const [submitting, setSubmitting] = useState(false);
+  const { hasCopied, onCopy } = useClipboard(window.location.href);
 
   const navigate = useNavigate();
   const { id } = useParams();
@@ -36,6 +41,23 @@ const AnswerView = () => {
       showErrorToast("error fetching poll");
     }
   }, [response]);
+
+  useEffect(() => {
+    if (hasCopied) {
+      showCopySuccessfulToast();
+    }
+  }, [hasCopied]);
+
+  const showCopySuccessfulToast = () => {
+    toast({
+      position: "bottom-right",
+      render: () => (
+        <Box color="white" p={3} bg="green.500">
+          Copied to clipboard!
+        </Box>
+      ),
+    });
+  };
 
   const showErrorToast = (message: string) => {
     toast({
@@ -81,43 +103,48 @@ const AnswerView = () => {
   };
 
   return (
-    <Flex
-      padding=".5em"
-      justifyContent={"center"}
-      alignItems={"center"}
-      height="100%"
-    >
-      <form onSubmit={handleSubmit}>
-        <Flex
-          flexDirection="column"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <Heading textAlign={"center"} size="xl" padding="10">
-            {poll?.title}
-          </Heading>
+    <Flex justify="center" alignItems="center" height="100%" width="100%">
+      <Card w="100%" style={{ maxWidth: "600px" }}>
+        <form onSubmit={handleSubmit}>
+          <Flex
+            flexDirection="column"
+            alignItems="center"
+            justifyContent="center"
+          >
+            <Flex alignItems="center">
+              <Heading textAlign={"center"} size="xl" padding="10">
+                {poll?.title}
+              </Heading>
+              <IconButton
+                style={{ backgroundColor: "transparent" }}
+                aria-label="share"
+                onClick={onCopy}
+                icon={<LinkIcon />}
+              />
+            </Flex>
 
-          <Stack p="2em">
-            <RadioGroup
-              onChange={handleSelect}
-              style={{ display: "flex", flexDirection: "column" }}
-            >
-              {poll?.options.map((option) => {
-                return (
-                  <Radio key={option.id} p="1em" value={option.id} size="lg">
-                    {option.value}
-                  </Radio>
-                );
-              })}
-            </RadioGroup>
-          </Stack>
-          <Flex justifyContent="flex-end">
-            <Button disabled={submitting} type="submit">
-              Submit
-            </Button>
+            <Stack p="2em" w="100%">
+              <RadioGroup
+                onChange={handleSelect}
+                style={{ display: "flex", flexDirection: "column" }}
+              >
+                {poll?.options.map((option) => {
+                  return (
+                    <Radio key={option.id} p="1em" value={option.id} size="lg">
+                      {option.value}
+                    </Radio>
+                  );
+                })}
+              </RadioGroup>
+            </Stack>
+            <Flex justifyContent="flex-end" w="100%">
+              <Button disabled={submitting} type="submit">
+                Submit
+              </Button>
+            </Flex>
           </Flex>
-        </Flex>
-      </form>
+        </form>
+      </Card>
     </Flex>
   );
 };
