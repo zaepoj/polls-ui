@@ -30,7 +30,9 @@ const AnswerView = () => {
   const { id } = useParams();
   const toast = useToast();
 
-  const [response] = useFetchApi<Poll>(`http://localhost:4011/polls/${id}`);
+  const [response] = useFetchApi<Poll>(
+    `${process.env.REACT_APP_API_URL}/polls/${id}`
+  );
 
   useEffect(() => {
     if (response && "data" in response) {

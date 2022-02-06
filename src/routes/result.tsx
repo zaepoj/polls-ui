@@ -25,7 +25,7 @@ const ResultView = () => {
   useEffect(() => {
     if (!listening) {
       const events = new EventSource(
-        `http://localhost:4011/polls/${id}/results`
+        `${process.env.REACT_APP_API_URL}/polls/${id}/results`
       );
       events.onmessage = (event) => {
         const parsedData = JSON.parse(event.data);
