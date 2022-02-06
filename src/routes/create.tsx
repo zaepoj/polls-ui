@@ -55,7 +55,7 @@ const CreateView = () => {
     const filledOpts = formState.options.filter((opt) => Boolean(opt.value));
 
     await ky
-      .post(`${process.env.REACT_APP_API_URL}/polls`, {
+      .post(`${import.meta.env.VITE_API_URL}/polls`, {
         json: { title: formState.title, options: filledOpts },
       })
       .then(async (res) => {

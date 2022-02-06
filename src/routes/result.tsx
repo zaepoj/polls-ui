@@ -25,7 +25,7 @@ const ResultView = () => {
   useEffect(() => {
     if (!listening) {
       const events = new EventSource(
-        `${process.env.REACT_APP_API_URL}/polls/${id}/results`
+        `${import.meta.env.VITE_API_URL}/polls/${id}/results`
       );
       events.onmessage = (event) => {
         const parsedData = JSON.parse(event.data);

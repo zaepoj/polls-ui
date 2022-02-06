@@ -31,7 +31,7 @@ const AnswerView = () => {
   const toast = useToast();
 
   const [response] = useFetchApi<Poll>(
-    `${process.env.REACT_APP_API_URL}/polls/${id}`
+    `${import.meta.env.VITE_API_URL}/polls/${id}`
   );
 
   useEffect(() => {
@@ -49,7 +49,6 @@ const AnswerView = () => {
       showCopySuccessfulToast();
     }
   }, [hasCopied]);
-
   const showCopySuccessfulToast = () => {
     toast({
       position: "bottom-right",
