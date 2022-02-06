@@ -93,7 +93,7 @@ const AnswerView = () => {
     setSubmitting(true);
 
     await ky
-      .post(`${import.meta.env.VITE_API_URL}/${id}/answer`, {
+      .post(`${import.meta.env.VITE_API_URL}/polls/${id}/answer`, {
         json: { optionId: pollAnswer },
       })
       .then(async () => {
