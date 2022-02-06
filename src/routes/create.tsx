@@ -20,7 +20,7 @@ import { type HTMLEvent } from "../types/generic";
 const CreateView = () => {
   const [formState, setFormState] = useState({
     title: "",
-    options: [{ value: "" }],
+    options: [{ value: "" }, { value: "" }],
   });
   const [submitting, setSubmitting] = useState(false);
   const navigate = useNavigate();
@@ -60,10 +60,13 @@ const CreateView = () => {
       })
       .then(async (res) => {
         const data: { pollId: string } = await res.json();
+        setSubmitting(false);
         navigate(`/${data.pollId}`);
       })
-      .catch(() => showErrorToast("Failed to create poll"))
-      .finally(() => setSubmitting(false));
+      .catch(() => {
+        showErrorToast("Failed to create poll");
+        setSubmitting(false);
+      });
   };
 
   const showErrorToast = (message: string) => {
@@ -90,7 +93,7 @@ const CreateView = () => {
         maxWidth="600px"
         alignItems="center"
       >
-        <Card w="100%">
+        <Card w="100%" justifyContent={"center"} alignItems={"center"}>
           <Heading size="xl" padding="10">
             Create new poll
           </Heading>
@@ -124,7 +127,7 @@ const CreateView = () => {
                         size="md"
                         isRequired
                       />
-                      {formState.options.length > 1 && (
+                      {formState.options.length > 2 && (
                         <IconButton
                           ml={2}
                           onClick={() => handleDeleteOption(key)}

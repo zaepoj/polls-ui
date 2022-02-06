@@ -2,8 +2,6 @@ import styled from "@emotion/styled";
 import { Flex } from "@chakra-ui/react";
 
 const Card = styled(Flex)`
-  align-items: center;
-  justify-content: center;
   flex-direction: column;
   padding: 1em;
   border-radius: 20px;

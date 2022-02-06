@@ -86,7 +86,6 @@ const ResultView = () => {
         </Flex>
         <Stack w="100%" p="2em" style={{ maxWidth: "1000px" }}>
           {pollResult?.options.map((opt) => {
-            console.log(totalCounts);
             return (
               <Box key={opt.id}>
                 <Flex alignItems="center" gap={".35em"}>

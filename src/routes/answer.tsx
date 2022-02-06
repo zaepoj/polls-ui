@@ -107,11 +107,7 @@ const AnswerView = () => {
     <Flex justify="center" alignItems="center" height="100%" width="100%">
       <Card w="100%" style={{ maxWidth: "600px" }}>
         <form onSubmit={handleSubmit}>
-          <Flex
-            flexDirection="column"
-            alignItems="center"
-            justifyContent="center"
-          >
+          <Flex flexDirection="column" justifyContent="center">
             <Flex alignItems="center">
               <Heading textAlign={"center"} size="xl" padding="10">
                 {poll?.title}
